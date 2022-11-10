@@ -5,7 +5,6 @@ function Main(){
     return(
         <>
         <div>RATE MY RESIDENT</div>
-        
         <Link to="/result">Result</Link>
         <Outlet />
         </>
