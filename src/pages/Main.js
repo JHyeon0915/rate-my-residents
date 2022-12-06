@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
 import {Outlet, Link} from 'react-router-dom';
+import Search from '../components/Search';
 
 function Main(){
     return(
         <>
         <div>RATE MY RESIDENT</div>
-        <Link to="/result">Result</Link>
+        <Search></Search>
         <Outlet />
         </>
     );
