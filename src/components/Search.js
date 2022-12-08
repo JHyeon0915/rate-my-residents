@@ -3,27 +3,9 @@ import residentsInfo from '../data/residentsInfo';
 import AutoSuggestion from "./AutoSuggestion.js"
 
 
-function Search({ details }){
-    const [searchInput, setSearchInput] = useState("");
-    const [suggestion, setSuggestion] = useState("");
+function Search(){
     const residents = residentsInfo;
 
-    const handleChange = e => {
-        e.preventDfault();
-        var value = e.target.value;
-        setSearchInput(value);
-    }
-
-    /*if (searchInput.length > 0){
-        residents.filter((resident => {
-            return resident.name.match(searchInput);
-        }));
-    }*/
-    const handleKeyDown = (e) => {
-        if (e.keyCode === 39) {
-          setSearchInput(suggestion);
-        }
-      };
     return(
         <>
             <section className="main phrase">
