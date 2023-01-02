@@ -5,16 +5,20 @@ import Header from '../components/Header';
 
 function Result(props){
     const location = useLocation();
+    console.log(location.state);
+
     return(
         <> 
             <Header />
             <div>here is result page</div>
-            <Link to="/rating" props={location}>
-                <button>Rate Name</button>
+            <Link to="/result/rating" props={location.state}>
+                <button>
+                    Rate {location.state.name}
+                </button>
             </Link>
             <Outlet />
             <div>here is commet section</div>
-            <ResidentRatingTabs props={location} />
+            <ResidentRatingTabs props={location.state} />
         </>
     );
 }
