@@ -2,12 +2,13 @@ import { useState } from "react";
 import React from 'react';
 import styled from "styled-components";
 
-function RatingRadioButton(){
-    const [select, setSelect] = useState("betterPriceOnly");
+function RatingRadioButton(props){
+    const [select, setSelect] = useState('');
     
     const handleSelectChange = (event) => {
       const value = event.target.value;
       setSelect(value);
+      props.setWilling(value);
     };
 
     return(
@@ -16,8 +17,8 @@ function RatingRadioButton(){
             <RadioButton
               type="radio"
               name="radio"
-              value="betterPriceOnly"
-              checked={select === "betterPriceOnly"}
+              value="yes"
+              checked={select === "yes"}
               onChange={(event) => handleSelectChange(event)}
             />
             <RadioButtonLabel />
@@ -27,8 +28,8 @@ function RatingRadioButton(){
                 <RadioButton
                     type="radio"
                     name="radio"
-                    value="anyPriceChange"
-                    checked={select === "anyPriceChange"}
+                    value="no"
+                    checked={select === "no"}
                     onChange={(event) => handleSelectChange(event)}
                 />
                 <RadioButtonLabel />
