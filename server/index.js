@@ -29,11 +29,13 @@ app.listen(PORT, () => {
 });
 
 // mysql
-app.get("/api/get", (req,res)=>{
-  db.query("SELECT * FROM rate_my_residents", (err,result)=>{
-    if(err)
-      console.log(err)
-  res.send(result)
+app.post("/result/post", (req,res)=>{
+  db.query(`SELECT r.* 
+    FROM rate r INNER JOIN resident rs on r.student_id = rs.student_id 
+    WHERE rs.name = {req.name}`, (err,result)=>{
+      // result is an array that contains dictionaries.
+      if(err) throw err;
+      res.send(result)
   });
 });
 
