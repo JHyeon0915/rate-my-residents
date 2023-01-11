@@ -7,6 +7,8 @@ import RatingRadioButton from '../components/RatingRadioButton';
 import RatingSlider from '../components/RatingSlider';
 import TagContainer from '../components/TagContainer';
 import Header from '../components/Header';
+import styled from 'styled-components';
+import CommentSection from '../components/CommentSection';
 
 function Rating({resident_name}){
     const navigate = useNavigate();
@@ -16,6 +18,7 @@ function Rating({resident_name}){
     const [tag1, setTag1] = useState('');
     const [tag2, setTag2] = useState('');
     const [tag3, setTag3] = useState('');
+    const [comment, setComment] = useState('');
 
 
     console.log("name: " + resident_name)
@@ -43,28 +46,21 @@ function Rating({resident_name}){
         console.log(tag1, tag2, tag3);
     }
 
+    const element = <RatingSlider setRate={setDiff}/>;
     return(
     <>
         <Header />
-        <div>
+        <DisplayName>
             Rate: 
-        </div>
+            <p style={{"font": "bold", "margin-top": "auto", "margin-bottom": "auto"}}>{resident_name}</p>
+        </DisplayName>
         <form>
-            <div>Here is FormCard</div>
-            <h5>Quality</h5>
-            <RatingSlider setRate={setQuality} />
-            <h5>Difficalty</h5>
-            <RatingSlider setRate={setDiff}/>
-            <div></div>
-            <RatingRadioButton setWilling={setWilling}/>
-            <div></div>
+            <FormCard title="Rate your resident" type="slider" setRate={setQuality}/>
+            <FormCard title="How difficult was to be friends with this person?" type="slider" setRate={setDiff}/>
+            <FormCard title="Would you be freinds again in the next life?" type="radio" setRate={setWilling}/>
             <TagContainer handleClick={getTag}/>
-            <h5>here comment</h5>
-            <input type='text'></input>
+            <CommentSection setComment={setComment}/>
             <div id="submittion">
-                <div>
-                    Please be thoughtful not to hurt anyone.
-                </div>
                 <button onClick={onClick}>
                     Submit
                 </button>
@@ -73,5 +69,14 @@ function Rating({resident_name}){
     </>
     );
 }
+
+const DisplayName = styled.div`
+    font-size: 3vw;
+    height: 5rem;
+    border: 0;
+    text-align: left;
+    box-shadow: 0px 5px 10px #D7D7D7;
+    margin-bottom: 40px
+`;
 
 export default Rating;
