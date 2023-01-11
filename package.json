@@ -19,5 +19,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "browser": {
+    "zlib": false,
+    "stream": false
+  }
 }

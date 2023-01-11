@@ -5,10 +5,11 @@ import { useEffect } from 'react';
 import Header from '../components/Header';
 import styled from 'styled-components';
 import DisplayOverall from '../components/DisplayOverall';
+import { useState } from 'react';
 
 function Result({name}){
+    const [rates, setRates] =useState([]);
     const location = useLocation();
-    let rates = [];
     let resident_name = '';
     console.log("location.state: "+location.state.name);
     console.log("name: "+name);
@@ -18,13 +19,29 @@ function Result({name}){
     else
         resident_name = location.state.name;
 
-    useEffect(()=>{
-        fetch('hettp://localhost:3001', {
+    useEffect(()=>{fetch('/api/info', {
             method: 'POST',
-            body: JSON.stringify(location.state)
+            mode: 'cors',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({"name": resident_name}),
         }).then(res => res.json())
-        .then(data => rates = data);
-    }, []); // The empty array ensures that the effect only runs once.
+        .then(result => {
+            console.log(result.result);
+            setRates(result.result)
+            console.log(rates);
+        })}, []);
+
+    const rating_tabs = [];
+    console.log(rates);
+    rates.forEach(r => {
+        rating_tabs.push(<ResidentRatingTabs props={r} />)
+        console.log("Im getting tabs");
+    });
+
+    if(rating_tabs.length === 0)
+        rating_tabs.push(<div>NO RESULT</div>);
+
+    console.log(rating_tabs.length);
 
     const assignData = (title) => {
         let sum = 0;
@@ -46,7 +63,6 @@ function Result({name}){
         return sum/rates.length;
     };
 
-    console.log(rates);
     const overall_rate = rates.length === 0 ? 5 : assignData("overall");
     const diff_rate = rates.length === 0 ? "-" : assignData("diff");
     const willingness = rates.length === 0 ? "-" : assignData("willing");
@@ -74,9 +90,7 @@ function Result({name}){
             <Outlet />
 
             <div>here is comment section</div>
-            {rates =! 0 ? <>NO RESULT</> : rates.forEach(r => {
-                    return(<ResidentRatingTabs props={r} />);
-                })}
+            {rating_tabs}
         </>
     );
 }
@@ -91,6 +105,7 @@ const RateButton = styled.button`
     border-radius: 50px;
     background-color: blue;
     color: white;
+    cursor: pointer;
 `;
 
 export default Result;
