@@ -19,28 +19,33 @@ function Result({name}){
     else
         resident_name = location.state.name;
 
-    useEffect(()=>{fetch('/api/info', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({"name": resident_name}),
-        }).then(res => res.json())
-        .then(result => {
-            console.log(result.result);
-            setRates(result.result)
-            console.log(rates);
-        })}, []);
+    useEffect(()=>{
+        const fetchData = async () => {
+            const res = await fetch('/api/info', {
+                method: 'POST',
+                mode: 'cors',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({"name": resident_name})
+            });
+            
+            const result = await res.json();
+            result.forEach(r => {
+                console.log(r);
+            });
+
+            setRates(result);
+        };
+        fetchData();
+    }, []);
 
     const rating_tabs = [];
-    console.log(rates);
     rates.forEach(r => {
         rating_tabs.push(<ResidentRatingTabs props={r} />)
-        console.log("Im getting tabs");
     });
-
-    if(rating_tabs.length === 0)
+    
+    if(rating_tabs.length === 0){
         rating_tabs.push(<div>NO RESULT</div>);
-
+    }
     console.log(rating_tabs.length);
 
     const assignData = (title) => {
