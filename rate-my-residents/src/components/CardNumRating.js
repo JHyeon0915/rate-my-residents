@@ -10,14 +10,17 @@ function CardNumRating ({ title, rate }) {
 
     const Ractangle = styled.div`
         width: 72px;
-        height: 64px;
+        height: auto;
         background: ${background};
+        padding: 10px 0;
     `;
 
     return(
         <Wrapper>
             <h6>{title}</h6>
-            <Ractangle>{rate}</Ractangle>
+            <Ractangle>
+                <RateNum>{rate}.0</RateNum>
+            </Ractangle>
         </Wrapper>
     );
 }
@@ -25,6 +28,12 @@ function CardNumRating ({ title, rate }) {
 const Wrapper = styled.div`
     width: 81px;
     height: 90px;
+`;
+
+const RateNum = styled.p`
+    font-family: "Poppins", sans-serif;
+    font-size: 32px;
+    font-weight: 900;
 `;
 
 export default CardNumRating;
