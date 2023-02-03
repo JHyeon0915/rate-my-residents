@@ -35,7 +35,7 @@ function ResidentRatingTabs(props) {
 const Wrapper = styled.div`
     max-width: 882px;
     background: #F9F9F9;
-    margin: 5px;
+    margin: 15px;
     padding: 0;
 `;
 

@@ -6,7 +6,6 @@ function RatingSlider(props){
 
     return(
       <>
-        <h3></h3>
         <RatingMui
           name="simple-controlled"
           value={value}
