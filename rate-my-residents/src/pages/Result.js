@@ -44,7 +44,7 @@ function Result({name}){
     });
     
     if(rating_tabs.length === 0){
-        rating_tabs.push(<div>NO RESULT</div>);
+        rating_tabs.push(<div style={{"font-size": "20px", margin: "20px"}}>NO RESULT</div>);
     }
     console.log(rating_tabs.length);
 
@@ -75,27 +75,33 @@ function Result({name}){
     return(
         <> 
             <Header />
-            <div style={{"font-size": "60px", display: "inline-block", clear: "left", "font-weight": "bold"}}>{overall_rate}</div>
-            <div style={{color:"grey", display: "inline-block"}}>/5</div>
-            <div>Overall Quality Bases on {rates.length} ratings</div>
-            <div>{resident_name}</div>
-            <div>
-                <div>{willingness}%</div>
-                <SmallText>Would be friends again in the next life</SmallText>
-            </div>
-            <div>
-                <div>{diff_rate}</div>
-                <SmallText>Level of Difficulty</SmallText>
-            </div><></>
-            <Link to="/result/rating" resident_name={location.state.name}>
-                <RateButton onClick={()=>{console.log(location.state.name)}}>
-                    Rate {resident_name}
-                </RateButton>
-            </Link>
-            <Outlet />
+            <BigWrapper>
+            <MainWrapper>
+                <div style={{"font-size": "60px", display: "inline-block", clear: "left", "font-weight": "bold","font-family":"Poppins"}}>{overall_rate}</div>
+                <div style={{color:"grey", display: "inline-block"}}>/5</div>
 
-            <div>here is comment section</div>
+                <div>Overall Quality Bases on {rates.length} ratings</div>
+                <p style={{"font-size": "40px", "font-weight": "bold", "font-family": "Poppins"}}>{resident_name}</p>
+                Resident in International House in San Jose State University.
+                <Feedback>
+                    <FeedbackItem>
+                        <FeedbackNum>{willingness}%</FeedbackNum>
+                        <SmallText>Would be friends again in the next life</SmallText>
+                    </FeedbackItem>
+                    <FeedbackItem>
+                        <FeedbackNum>{diff_rate}</FeedbackNum>
+                        <SmallText>Level of Difficulty</SmallText>
+                    </FeedbackItem>
+                </Feedback>
+                <Link to="/result/rating" resident_name={location.state.name}>
+                    <RateButton onClick={()=>{console.log(location.state.name)}}>
+                        Rate {resident_name}
+                    </RateButton>
+                </Link>
+                <Outlet />
+            </MainWrapper>
             {rating_tabs}
+            </BigWrapper>
         </>
     );
 }
@@ -111,6 +117,30 @@ const RateButton = styled.button`
     background-color: blue;
     color: white;
     cursor: pointer;
+`;
+
+const MainWrapper = styled.div`
+    padding: 100px;
+    border-bottom: 2px solid black;
+`;
+
+const Feedback = styled.div`
+    display: flex;
+`;
+
+const FeedbackItem = styled.div`
+    
+`;
+
+const FeedbackNum = styled.div`
+    font-family: Poppins;
+    font-weight: bold;
+    font-size: 32px;
+`;
+
+const BigWrapper = styled.div`
+    width: auto;
+    max-width: 1000px;
 `;
 
 export default Result;
