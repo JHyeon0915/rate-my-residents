@@ -1,21 +1,18 @@
-import React, { useState } from "react";
-import residentsInfo from '../data/residentsInfo';
-import AutoSuggestion from "./AutoSuggestion.js"
-
+import React from "react";
+import AutoSuggestion from "./AutoSuggestion.js";
+import styled from "styled-components";
 
 function Search(){
-    const residents = residentsInfo;
-
     return(
-        <>
-            <section className="main phrase">
-                <div>
-                    <h2>Find a resident at SJSU International House</h2>
-                </div>
-                <AutoSuggestion />
-            </section>
-        </>
+        <MainWrapper>
+            <h1 style={{"color": "white", "font-size": "30px"}}>Find a resident at SJSU International House</h1>
+            <AutoSuggestion />
+        </MainWrapper>
     );
 }
+
+const MainWrapper = styled.div`
+    width: auto;
+`;
 
 export default Search;

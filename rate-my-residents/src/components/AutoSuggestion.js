@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import residentsInfo from '../data/residentsInfo';
 import {useNavigate} from 'react-router-dom';
+import styled from 'styled-components';
 
 export default function FreeSolo() {
   const navigate = useNavigate()
@@ -24,7 +25,7 @@ export default function FreeSolo() {
         renderInput={(params) => (
           <div ref={params.InputProps.ref}>
             <form>
-              <input 
+              <PersonalInput 
                 type="text" 
                 {...params.inputProps}
                 onKeyDown={handleKeyDown}
@@ -37,5 +38,11 @@ export default function FreeSolo() {
   );
 }
 
-
 const residents = residentsInfo;
+
+const PersonalInput = styled.input`
+  border-radius: 50px;
+  width: 545px;
+  height: 56px;
+  font-size: 20px;
+`;
