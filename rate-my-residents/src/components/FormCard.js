@@ -7,7 +7,7 @@ function FormCard (props) {
 
     return(
         <Wrapper>
-            <div style={{"font-size": "16px"}}><b>{props.title}</b></div>
+            <div style={{fontSize: "20px", margin: "5px 0"}}><b>{props.title}</b></div>
             {props.type === "slider" ? <RatingSlider setRate={props.setRate} /> : <RatingRadioButton setRate={props.setRate} />}
         </Wrapper>
     );
