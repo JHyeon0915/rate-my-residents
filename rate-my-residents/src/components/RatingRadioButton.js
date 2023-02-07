@@ -12,7 +12,7 @@ function RatingRadioButton(props){
     };
 
     return(
-        <>
+        <Wrapper>
             <Item>
             <RadioButton
               type="radio"
@@ -35,10 +35,13 @@ function RatingRadioButton(props){
                 <RadioButtonLabel />
                 <div>No</div>
             </Item>
-      </>
-
+      </Wrapper>
     );
 }
+
+const Wrapper =styled.div`
+  margin: 40px 0 0 45%;
+`;
 
 const Item = styled.div`
   display: flex;
