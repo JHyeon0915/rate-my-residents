@@ -10,9 +10,8 @@ function TagElement ({tag, handleClick}) {
 
     return(
         <Wrapper>
-            <input name = {tag} type="checkbox"></input>
+            <input name={tag} type="checkbox"></input>
             <div aria-hidden="true" value="false" onClick={onClick}>{tag}</div>
-            <button hidden="true" onClick={()=>{ if(checked) handleClick(tag)}}></button>
         </Wrapper>
     );
 }     
