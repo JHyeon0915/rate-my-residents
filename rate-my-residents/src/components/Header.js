@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Header(){
     return(
         <Wrapper>
-                <RMR style={{}}>
+                <RMR style={{cursor: "pointer"}}>
                     <Link to="/" style={{textDecoration: "none", color: "black"}}>  
                         <b>R M R</b>
                     </Link>
@@ -14,7 +14,7 @@ export default function Header(){
 }
 const Wrapper = styled.section`
     margin: 0;
-    padding-bottom: 0;
+    padding-top: 20px;
     top: 0;
     height: 64px;
     width: 100%;
@@ -25,7 +25,7 @@ const Wrapper = styled.section`
 
 const RMR = styled.div`
     textAlign: center;
-    padding: 0;
+    padding-top: 10px;
     background: white;
     font-size: 16px;
     width: 70px;
