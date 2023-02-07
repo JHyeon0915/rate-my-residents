@@ -52,7 +52,7 @@ function Rating({resident_name}){
         <Header />
         <DisplayName>
             Rate: 
-            <p style={{"font": "bold", "margin-top": "auto", "margin-bottom": "auto"}}>{resident_name}</p>
+            <p style={{"font": "bold", margin: "0 auto"}}>{resident_name}</p>
         </DisplayName>
         <form>
             <FormCard title="Rate your resident" type="slider" setRate={setQuality}/>
