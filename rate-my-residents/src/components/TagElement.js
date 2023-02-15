@@ -1,28 +1,41 @@
 import { useState } from 'react';
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import styled from 'styled-components';
 
 function TagElement ({tag, handleClick}) {
     const [checked, setChecked] = useState(false);
+    const [tagColor,setTagColor] = useState("#EFEFEF");
+    
     const onClick = () => {
         setChecked(!checked);
-        // if checked is true, change color
+
+        if (tagColor == "#EFEFEF")
+            setTagColor("#D9E7FF");
+        else
+            setTagColor("#EFEFEF");
     };
 
+    const TagWrapper = styled.div`
+        background-color: ${tagColor};
+        margin: 10px 10px 0 5px;
+        padding: 10px 20px;
+        display: inline-box;
+        border-radius: 17px;
+        cursor: pointer;
+    `;
+
     return(
-        <Wrapper>
-            <input name={tag} type="checkbox"></input>
-            <div aria-hidden="true" value="false" onClick={onClick}>{tag}</div>
-        </Wrapper>
+        <TagWrapper onClick={onClick}>
+            <input name={tag}type="checkbox" hidden></input>
+            <div aria-hidden="true" value="false">
+                {tag}
+            </div>
+        </TagWrapper>
     );
 }     
- 
-const Wrapper = styled.div`
-    background: #EFEFEF;
-    margin: 10px 10px 0 5px;
-    padding: 10px 15px;
-    display: inline-box;
-    border-radius: 15px;
-`;
+
+
+
 
 
 export default TagElement;
