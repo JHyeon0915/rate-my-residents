@@ -14,6 +14,7 @@ function TagContainer ({handleClick})  {
         elements.push(<TagElement tag={tag} handleClick={handleClick}/>)
     });
 
+
     return(
         <Wrapper>
             <div><b>Select up to 3 tags</b></div>
@@ -23,7 +24,10 @@ function TagContainer ({handleClick})  {
 }
 
 const Wrapper = styled.div`
-    padding: 20px;
+    max-width: 886px;
+    width: 100%;
+    height: 100%;
+    padding: 20px 0px;
     border: 1px solid #D7D7D7;
     box-shadow: 0px 5px 10px #D7D7D7;
     border-radius: 5px;
