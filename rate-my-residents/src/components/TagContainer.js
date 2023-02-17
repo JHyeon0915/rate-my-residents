@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 function TagContainer ({handleClick})  {
     const [data, setData] = useState('');
-    const tags = ["pretty", "handsome", "cute", 
-    "considerate", "mature", "imature", 
-    "hard texter", "talkative", "bitch", 
-    "oblivious", "caring", "sweet", "son of a bitch"];
+    const tags = ["Pretty", "Handsome", "Cute", 
+    "Considerate", "Mature", "Imature", 
+    "Hard texter", "Talkative", "Bitch", 
+    "Oblivious", "Caring", "Wweet", "Son of a Bitch"];
     const elements = [];
 
     tags.forEach((tag) => {
