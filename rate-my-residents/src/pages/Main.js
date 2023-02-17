@@ -8,11 +8,9 @@ function Main(){
     return(
         <Wrapper>
             <Image src={main_pic}/>
-            <SearchBox>
-                <Search></Search>
-                <Outlet />
+            <SearchBox className="search-box">
+                <Search />
             </SearchBox>
-    
         </Wrapper>
     );
 }
@@ -32,8 +30,9 @@ const Image = styled.img`
 
 const SearchBox = styled.div`
     position: absolute;
-    left: 10%;
+    left: 0;
     top: 40%;
+    width: auto;
 `;
 
 export default Main;

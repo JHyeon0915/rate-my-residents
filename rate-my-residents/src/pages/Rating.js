@@ -54,29 +54,41 @@ function Rating({resident_name}){
             Rate: 
             <p style={{"font": "bold", margin: "0 auto"}}>{resident_name}</p>
         </DisplayName>
-        <form>
-            <FormCard title="Rate your resident" type="slider" setRate={setQuality}/>
-            <FormCard title="How difficult was to be friends with this person?" type="slider" setRate={setDiff}/>
-            <FormCard title="Would you be freinds again in the next life?" type="radio" setRate={setWilling}/>
-            <TagContainer handleClick={getTag}/>
-            <CommentSection setComment={setComment}/>
-            <div id="submittion">
-                <button onClick={onClick}>
-                    Submit
-                </button>
-            </div>
-        </form>
+        <FormContainer>
+            <form>
+                <FormCard title="Rate your resident" type="slider" setRate={setQuality}/>
+                <FormCard title="How difficult was to be friends with this person?" type="slider" setRate={setDiff}/>
+                <FormCard title="Would you be freinds again in the next life?" type="radio" setRate={setWilling}/>
+                <TagContainer handleClick={getTag}/>
+                <CommentSection setComment={setComment}/>
+                <div id="submittion">
+                    <button type="submit" onClick={onClick}>
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </FormContainer>    
+        
     </>
     );
 }
 
 const DisplayName = styled.div`
-    font-size: 3vw;
-    height: 5rem;
+    font-size: 4vw;
+    height: 6rem;
     border: 0;
     text-align: left;
     box-shadow: 0px 5px 10px #D7D7D7;
     margin-bottom: 40px
+`;
+
+const FormContainer= styled.div`
+    position: relative;
+    left: 0;
+    max-width: 1280px;
+    width: fit-content;
+    margin: 0 2vw;
+    padding: 0;
 `;
 
 export default Rating;

@@ -12,7 +12,8 @@ function Search(){
 }
 
 const MainWrapper = styled.div`
-    width: auto;
+    left: 0;
+    width: 100%;
 `;
 
 export default Search;

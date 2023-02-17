@@ -17,7 +17,7 @@ export default function FreeSolo() {
   }
 
   return (
-    <Stack spacing={2} sx={{ width: 300 }}>
+    <Stack spacing={2} sx={{ width: 300, margin:0 }}>
       <Autocomplete
         id="auto-complete-search"
         freeSolo
