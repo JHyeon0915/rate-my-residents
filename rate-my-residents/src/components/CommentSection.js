@@ -2,6 +2,8 @@ import styled from "styled-components";
 import alert_pic from '../assets/Images/alert.svg';
 
 function CommentSection (props) {
+    const PLACEHOLDER = "What do you want to share? Feel free to leave comments of glorious moments with your lovely resident.";
+    
     const onChange = (e) => {
         props.setComment(e.target.value);
     }
@@ -9,6 +11,7 @@ function CommentSection (props) {
     return(
         <Wrapper>
             <div style={{font: "16px"}}><b>Write a Review</b></div>
+            <p>Discuss the professor's professional abilities including teaching style and ability to convey the material clearly</p>
             <Guidance>
                 <image src={alert_pic}/>
                 <b>Guidelines</b>
@@ -16,7 +19,7 @@ function CommentSection (props) {
                         <li>Please be thoughtful not to hurt anyone.</li>
                     </ol>
             </Guidance>
-            <input onChange={onChange} type="text"></input>
+            <CommentArea onChange={onChange} type="text" placeholder={PLACEHOLDER}></CommentArea>
         </Wrapper>
     );
 }
@@ -31,7 +34,16 @@ const Wrapper = styled.div`
 
 const Guidance = styled.div`
     background: #F7F7F7;
-    margin: 10px 0;
+    margin: 20px 0;
+`;
+
+const CommentArea = styled.textarea`
+    width: 94%;
+    height: 201px;
+    padding: 20px;
+    text-align: left;
+    word-break: break-word;
+    resize: none;
 `;
 
 export default CommentSection;
