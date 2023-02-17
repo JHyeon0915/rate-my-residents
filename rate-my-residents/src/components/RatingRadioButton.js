@@ -5,10 +5,10 @@ import styled from "styled-components";
 function RatingRadioButton(props){
     const [select, setSelect] = useState('');
     
-    const handleSelectChange = (event) => {
+    const handleChange = (event) => {
       const value = event.target.value;
       setSelect(value);
-      props.setWilling(value);
+      props.setRate(value);
     };
 
     return(
@@ -19,7 +19,7 @@ function RatingRadioButton(props){
               name="radio"
               value="yes"
               checked={select === "yes"}
-              onChange={(event) => handleSelectChange(event)}
+              onChange={(event) => handleChange(event)}
             />
             <RadioButtonLabel />
             <div>Yes</div>
@@ -30,7 +30,7 @@ function RatingRadioButton(props){
                     name="radio"
                     value="no"
                     checked={select === "no"}
-                    onChange={(event) => handleSelectChange(event)}
+                    onChange={(event) => handleChange(event)}
                 />
                 <RadioButtonLabel />
                 <div>No</div>

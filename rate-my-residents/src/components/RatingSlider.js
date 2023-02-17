@@ -4,7 +4,6 @@ import styled from "styled-components";
 function RatingSlider(props){
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-  const rateColors = ["red", "orange", "yellow", "olive", "green"];
 
   return (
       <Wrapper className="star-rating">
@@ -16,7 +15,8 @@ function RatingSlider(props){
               key={index}
               className={index <= (hover || rating) ? "on"+index : "off"+index}
               onClick={() => {
-                setRating(index)
+                setRating(index);
+                props.setRate(index);
               }}
               onMouseEnter={() => setHover(index)}
               onMouseLeave={() => setHover(rating)}
