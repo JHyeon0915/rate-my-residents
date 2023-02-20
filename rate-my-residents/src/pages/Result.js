@@ -40,11 +40,17 @@ function Result({name}){
 
     const rating_tabs = [];
     rates.forEach(r => {
-        rating_tabs.push(<ResidentRatingTabs props={r} />)
+        rating_tabs.push(
+            <li>
+                <ResidentRatingTabs props={r} />
+            </li>
+        );
     });
     
     if(rating_tabs.length === 0){
-        rating_tabs.push(<div style={{"font-size": "20px", margin: "20px"}}>NO RESULT</div>);
+        rating_tabs.push(
+            <div style={{"font-size": "20px", margin: "20px"}}>NO RESULT</div>  
+        );
     }
     console.log(rating_tabs.length);
 
@@ -76,31 +82,33 @@ function Result({name}){
         <> 
             <Header />
             <BigWrapper>
-            <MainWrapper>
-                <div style={{"font-size": "60px", display: "inline-block", clear: "left", "font-weight": "bold","font-family":"Poppins"}}>{overall_rate}</div>
-                <div style={{color:"grey", display: "inline-block"}}>/5</div>
+                <MainWrapper>
+                    <div style={{"font-size": "60px", display: "inline-block", clear: "left", "font-weight": "bold","font-family":"Poppins"}}>{overall_rate}</div>
+                    <div style={{color:"grey", display: "inline-block"}}>/5</div>
 
-                <div>Overall Quality Bases on {rates.length} ratings</div>
-                <p style={{"font-size": "40px", "font-weight": "bold", "font-family": "Poppins"}}>{resident_name}</p>
-                Resident in International House in San Jose State University.
-                <Feedback>
-                    <FeedbackItem>
-                        <FeedbackNum>{willingness}%</FeedbackNum>
-                        <SmallText>Would be friends again in the next life</SmallText>
-                    </FeedbackItem>
-                    <FeedbackItem>
-                        <FeedbackNum>{diff_rate}</FeedbackNum>
-                        <SmallText>Level of Difficulty</SmallText>
-                    </FeedbackItem>
-                </Feedback>
-                <Link to="/result/rating" resident_name={location.state.name}>
-                    <RateButton onClick={()=>{console.log(location.state.name)}}>
-                        Rate {resident_name}
-                    </RateButton>
-                </Link>
-                <Outlet />
-            </MainWrapper>
-            {rating_tabs}
+                    <p style={{"text-align":"left", padding: "10px 0"}}>Overall Quality Bases on {rates.length} ratings</p>
+                    <ResidentName>{resident_name}</ResidentName>
+                    Resident in International House in San Jose State University.
+                    <Feedback>
+                        <FeedbackItem style={{"border-right":"1px solid black", "padding-right":10}}>
+                            <FeedbackNum>{willingness}%</FeedbackNum>
+                            <SmallText>Would be friends again</SmallText>
+                        </FeedbackItem>
+                        <FeedbackItem style={{"margin-left": 10}}>
+                            <FeedbackNum>{diff_rate}</FeedbackNum>
+                            <SmallText>Level of Difficulty</SmallText>
+                        </FeedbackItem>
+                    </Feedback>
+                    <Link to="/result/rating" resident_name={location.state.name}>
+                        <RateButton onClick={()=>{console.log(location.state.name)}}>
+                            Rate {resident_name}
+                        </RateButton>
+                    </Link>
+                    <Outlet />
+                </MainWrapper>
+                <ul>
+                    {rating_tabs}
+                </ul>
             </BigWrapper>
         </>
     );
@@ -111,6 +119,7 @@ const SmallText = styled.div`
 `;
 
 const RateButton = styled.button`
+    margin: 10px 0;
     padding: 10px;
     border-color: blue;
     border-radius: 50px;
@@ -120,8 +129,9 @@ const RateButton = styled.button`
 `;
 
 const MainWrapper = styled.div`
-    padding: 100px;
+    padding: 100px 3% 20px 3%;
     border-bottom: 2px solid black;
+    text-align: left;
 `;
 
 const Feedback = styled.div`
@@ -129,7 +139,8 @@ const Feedback = styled.div`
 `;
 
 const FeedbackItem = styled.div`
-    
+    margin: 10px 0;
+    padding: 10px 0;
 `;
 
 const FeedbackNum = styled.div`
@@ -141,6 +152,14 @@ const FeedbackNum = styled.div`
 const BigWrapper = styled.div`
     width: auto;
     max-width: 1000px;
+`;
+
+const ResidentName = styled.p`
+    margin: 10px 0;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Poppins;
+    text-align: left;
 `;
 
 export default Result;
