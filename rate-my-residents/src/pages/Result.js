@@ -120,7 +120,7 @@ const SmallText = styled.div`
 
 const RateButton = styled.button`
     margin: 10px 0;
-    padding: 10px;
+    padding: 10px 30px;
     border-color: blue;
     border-radius: 50px;
     background-color: blue;
