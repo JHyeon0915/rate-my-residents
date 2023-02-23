@@ -14,9 +14,9 @@ export default function Header(){
 }
 const Wrapper = styled.section`
     margin: 0;
-    padding-top: 20px;
+    padding: 10px 0;
     top: 0;
-    height: 64px;
+    height: 45px;
     width: 100%;
     background: black;
     color: white;

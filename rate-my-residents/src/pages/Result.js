@@ -134,7 +134,7 @@ const RateButton = styled.button`
 `;
 
 const MainWrapper = styled.div`
-    padding: 100px 3% 20px 3%;
+    padding: 80px 3% 20px 3%;
     border-bottom: 2px solid black;
     text-align: left;
 `;
