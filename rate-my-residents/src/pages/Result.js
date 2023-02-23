@@ -83,8 +83,8 @@ function Result({name}){
             <Header />
             <BigWrapper>
                 <MainWrapper>
-                    <div style={{"font-size": "60px", display: "inline-block", clear: "left", "font-weight": "bold","font-family":"Poppins"}}>{overall_rate}</div>
-                    <div style={{color:"grey", display: "inline-block"}}>/5</div>
+                    <OverallRate>{overall_rate}</OverallRate>
+                    <div style={{color:"grey", display: "inline-block", "font-weight": "bold"}}>/5</div>
 
                     <p style={{"text-align":"left", padding: "10px 0"}}>Overall Quality Bases on {rates.length} ratings</p>
                     <ResidentName>{resident_name}</ResidentName>
@@ -160,6 +160,15 @@ const ResidentName = styled.p`
     font-weight: bold;
     font-family: Poppins;
     text-align: left;
+`;
+
+const OverallRate = styled.div`
+    font-size: 60px;
+    display: inline-block;
+    clear: left; 
+    font-weight: bold;
+    font-family: Poppins;
+    margin-right: 10px;
 `;
 
 export default Result;
