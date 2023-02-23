@@ -120,12 +120,17 @@ const SmallText = styled.div`
 
 const RateButton = styled.button`
     margin: 10px 0;
-    padding: 10px 30px;
-    border-color: blue;
+    padding: 15px 40px;
+    border: none;
     border-radius: 50px;
-    background-color: blue;
+    background-color: #0055FD;
     color: white;
     cursor: pointer;
+    box-shadow: none;
+    font-weight: bold;
+:hover {
+    background-color: #0021FF;
+}
 `;
 
 const MainWrapper = styled.div`
