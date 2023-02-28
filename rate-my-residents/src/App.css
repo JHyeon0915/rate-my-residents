@@ -6,6 +6,10 @@
   font-family: HelveticaNeue, arial;
 }
 
+ul {
+  list-style: none;
+}
+
 /* Undisplay scroll bar */
 body::-webkit-scrollbar { display:none; }
 body {
