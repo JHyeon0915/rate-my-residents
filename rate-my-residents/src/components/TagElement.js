@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import styled from 'styled-components';
 
-function TagElement ({tag, handleClick}) {
+function TagElement ({tagOption, setTag}) {
     const [checked, setChecked] = useState(false);
     const [tagColor,setTagColor] = useState("#EFEFEF");
-    
+
     const onClick = () => {
         setChecked(!checked);
+        setTag(tagOption);
 
         if (tagColor == "#EFEFEF")
             setTagColor("#D9E7FF");
@@ -26,9 +26,9 @@ function TagElement ({tag, handleClick}) {
 
     return(
         <TagWrapper onClick={onClick}>
-            <input name={tag}type="checkbox" hidden></input>
+            <input name={tagOption}type="checkbox" hidden></input>
             <div aria-hidden="true" value="false">
-                {tag}
+                {tagOption}
             </div>
         </TagWrapper>
     );
