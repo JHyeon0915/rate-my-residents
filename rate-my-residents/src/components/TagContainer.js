@@ -2,16 +2,16 @@ import TagElement from "./TagElement";
 import { useState } from "react";
 import styled from "styled-components";
 
-function TagContainer ({handleClick})  {
-    const [data, setData] = useState('');
-    const tags = ["Pretty", "Handsome", "Cute", 
+function TagContainer ({setTag})  {
+    const [numOfTag, setNumOfTag] = useState(0)
+    const tagOptions = ["Pretty", "Handsome", "Cute", 
     "Considerate", "Mature", "Imature", 
     "Hard texter", "Talkative", "Bitch", 
     "Oblivious", "Caring", "Wweet", "Son of a Bitch"];
     const elements = [];
 
-    tags.forEach((tag) => {
-        elements.push(<TagElement tag={tag} handleClick={handleClick}/>)
+    tagOptions.forEach((tagOption) => {
+        elements.push(<TagElement tagOption={tagOption} setTag={setTag}/>)
     });
 
 
