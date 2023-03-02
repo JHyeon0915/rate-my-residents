@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import FormCard from '../components/FormCard';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -15,9 +15,7 @@ function Rating({resident_name}){
     const [quality, setQuality] = useState(0);
     const [diff, setDiff] = useState(0);
     const [willing, setWilling] = useState('');
-    const [tag1, setTag1] = useState('');
-    const [tag2, setTag2] = useState('');
-    const [tag3, setTag3] = useState('');
+    const [tags, setTags] = useState([]);
     const [comment, setComment] = useState('');
 
 
@@ -25,7 +23,6 @@ function Rating({resident_name}){
 
     const onClick = (e) => {
         e.preventDefault();
-        getTag();
         /*fetch('http://localhost:3001:/result/rating', {
             method: 'POST',
             body: 
@@ -35,18 +32,15 @@ function Rating({resident_name}){
         // gather all data and update.
     }
 
-    const getTag = (tag) => {
-        if(tag1 === '')
-            setTag1(tag);
-        else if(tag2 === '')
-            setTag2(tag);
-        else if(tag3 === '')
-            setTag3(tag);
-        
-        console.log(tag1, tag2, tag3);
+    const setTag = (tag) => {
+        console.log(tag);
+        setTags([...tags, tag]);     // same as users.concat(user)
     }
 
-    const element = <RatingSlider setRate={setDiff}/>;
+    const removeTag = (targetTag) => {
+        setTags(tags.filter(tag => tag === targetTag))
+    }
+
     return(
     <>
         <Header />
@@ -59,7 +53,7 @@ function Rating({resident_name}){
                 <FormCard title="Rate your resident" type="slider" setRate={setQuality}/>
                 <FormCard title="How difficult was to be friends with this person?" type="slider" setRate={setDiff}/>
                 <FormCard title="Would you be freinds again in the next life?" type="radio" setRate={setWilling}/>
-                <TagContainer handleClick={getTag}/>
+                <TagContainer setTag={setTag} removeTag={removeTag}/>
                 <CommentSection setComment={setComment}/>
                 <div id="submittion">
                     <button type="submit" onClick={onClick}>

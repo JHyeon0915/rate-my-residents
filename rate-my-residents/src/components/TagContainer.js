@@ -2,16 +2,25 @@ import TagElement from "./TagElement";
 import { useState } from "react";
 import styled from "styled-components";
 
-function TagContainer ({setTag})  {
-    const [numOfTag, setNumOfTag] = useState(0)
+function TagContainer (props)  {
+    const [tagCount, setTagCount] = useState(0);
+    const [cursor, setCursor] = useState("pointer");
     const tagOptions = ["Pretty", "Handsome", "Cute", 
     "Considerate", "Mature", "Imature", 
     "Hard texter", "Talkative", "Bitch", 
     "Oblivious", "Caring", "Wweet", "Son of a Bitch"];
     const elements = [];
 
+    const isTagsFull = () => {
+        if (tagCount < 3)
+            return false
+        else
+            return true
+    }
+
     tagOptions.forEach((tagOption) => {
-        elements.push(<TagElement tagOption={tagOption} setTag={setTag}/>)
+        elements.push(<TagElement tagOption={tagOption} setTag={props.setTag} removeTag={props.removeTag} 
+            tagCount={tagCount} setTagCount={setTagCount} isTagsFull={isTagsFull} setCursor={setCursor} cursor={cursor}/>)
     });
 
 
