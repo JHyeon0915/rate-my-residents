@@ -56,9 +56,9 @@ function Rating({resident_name}){
                 <TagContainer setTag={setTag} removeTag={removeTag}/>
                 <CommentSection setComment={setComment}/>
                 <div id="submittion">
-                    <button type="submit" onClick={onClick}>
-                        Submit
-                    </button>
+                    <SubmitBtn type="submit" onClick={onClick}>
+                        Submit Rating
+                    </SubmitBtn>
                 </div>
             </form>
         </FormContainer>    
@@ -83,6 +83,18 @@ const FormContainer= styled.div`
     width: fit-content;
     margin: 0 2vw;
     padding: 0;
+`;
+
+const SubmitBtn = styled.button`
+    width: 227px;
+    height: 40px;
+    margin: 50px 0;
+    background-color: #989898;
+    border:none;
+    border-radius: 30px;
+    pointer: cursor;
+    color: white;
+    font-weight: bold;
 `;
 
 export default Rating;
