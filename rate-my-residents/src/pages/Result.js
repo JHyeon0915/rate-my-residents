@@ -7,17 +7,17 @@ import styled from 'styled-components';
 import DisplayOverall from '../components/DisplayOverall';
 import { useState } from 'react';
 
-function Result({name}){
+function Result(props){
+    const [name, setName] = useState(null);
     const [rates, setRates] =useState([]);
     const location = useLocation();
-    let resident_name = '';
-    console.log("location.state: "+location.state.name);
-    console.log("name: "+name);
 
-    if(location.state === null)
-        resident_name = name;
-    else
-        resident_name = location.state.name;
+    useEffect(()=>{
+        if(location.state === null)
+            setName(props.name);
+        else
+            setName(location.state.name);
+    }, []);
 
     useEffect(()=>{
         const fetchData = async () => {
@@ -25,7 +25,7 @@ function Result({name}){
                 method: 'POST',
                 mode: 'cors',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({"name": resident_name})
+                body: JSON.stringify({"name": name})
             });
             
             const result = await res.json();
@@ -36,7 +36,7 @@ function Result({name}){
             setRates(result);
         };
         fetchData();
-    }, []);
+    }, [name]);
 
     const rating_tabs = [];
     rates.forEach(r => {
@@ -52,7 +52,6 @@ function Result({name}){
             <div style={{"font-size": "20px", margin: "20px"}}>NO RESULT</div>  
         );
     }
-    console.log(rating_tabs.length);
 
     const assignData = (title) => {
         let sum = 0;
@@ -87,7 +86,7 @@ function Result({name}){
                     <div style={{color:"grey", display: "inline-block", "font-weight": "bold"}}>/5</div>
 
                     <p style={{"text-align":"left", padding: "10px 0"}}>Overall Quality Bases on {rates.length} ratings</p>
-                    <ResidentName>{resident_name}</ResidentName>
+                    <ResidentName>{name}</ResidentName>
                     Resident in International House in San Jose State University.
                     <Feedback>
                         <FeedbackItem style={{"border-right":"1px solid black", "padding-right":10}}>
@@ -99,9 +98,9 @@ function Result({name}){
                             <SmallText>Level of Difficulty</SmallText>
                         </FeedbackItem>
                     </Feedback>
-                    <Link to="/result/rating" resident_name={location.state.name}>
-                        <RateButton onClick={()=>{console.log(location.state.name)}}>
-                            Rate {resident_name}
+                    <Link to="/result/rating" residentName={name}>
+                        <RateButton>
+                            Rate {name}
                         </RateButton>
                     </Link>
                     <Outlet />
