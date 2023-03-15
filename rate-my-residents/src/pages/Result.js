@@ -13,10 +13,7 @@ function Result(props){
     const location = useLocation();
 
     useEffect(()=>{
-        if(location.state === null)
-            setName(props.name);
-        else
-            setName(location.state.name);
+        setName(location.state.name);
     }, []);
 
     useEffect(()=>{
@@ -98,7 +95,7 @@ function Result(props){
                             <SmallText>Level of Difficulty</SmallText>
                         </FeedbackItem>
                     </Feedback>
-                    <Link to="/result/rating" residentName={name}>
+                    <Link to="/result/rating" state={name}>
                         <RateButton>
                             Rate {name}
                         </RateButton>

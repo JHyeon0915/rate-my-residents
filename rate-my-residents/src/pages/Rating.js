@@ -3,14 +3,15 @@ import {useState, useEffect} from 'react';
 import FormCard from '../components/FormCard';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import RatingRadioButton from '../components/RatingRadioButton';
-import RatingSlider from '../components/RatingSlider';
 import TagContainer from '../components/TagContainer';
 import Header from '../components/Header';
 import styled from 'styled-components';
 import CommentSection from '../components/CommentSection';
+import axios from 'axios';
 
-function Rating({resident_name}){
+function Rating(){
+    const location = useLocation();
+    const residentName = location.state;
     const navigate = useNavigate();
     const [quality, setQuality] = useState(0);
     const [diff, setDiff] = useState(0);
@@ -18,18 +19,10 @@ function Rating({resident_name}){
     const [tags, setTags] = useState([]);
     const [comment, setComment] = useState('');
 
-
-    console.log("name: " + resident_name)
-
-    const onClick = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
-        /*fetch('http://localhost:3001:/result/rating', {
-            method: 'POST',
-            body: 
-        })*/
 
-        navigate('/result')
-        // gather all data and update.
+        navigate('/result');
     }
 
     const setTag = (tag) => {
@@ -45,8 +38,7 @@ function Rating({resident_name}){
     <>
         <Header />
         <DisplayName>
-            Rate: 
-            <p style={{"font": "bold", margin: "0 auto"}}>{resident_name}</p>
+            Rate: {residentName}
         </DisplayName>
         <FormContainer>
             <form>
@@ -56,7 +48,7 @@ function Rating({resident_name}){
                 <TagContainer setTag={setTag} removeTag={removeTag}/>
                 <CommentSection setComment={setComment}/>
                 <div id="submittion">
-                    <SubmitBtn type="submit" onClick={onClick}>
+                    <SubmitBtn type="submit" onClick={onSubmit}>
                         Submit Rating
                     </SubmitBtn>
                 </div>
