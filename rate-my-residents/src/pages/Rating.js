@@ -22,6 +22,10 @@ function Rating(){
     const onSubmit = (e) => {
         e.preventDefault();
 
+        axios.post('/api/rate', {residentName, quality, diff, willing, comment, tags})
+            .then(response => console.log(response.data))
+            .catch(err => console.log(err));
+
         navigate('/result');
     }
 
