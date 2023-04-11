@@ -26,7 +26,7 @@ function Rating(){
             .then(response => console.log(response.data))
             .catch(err => console.log(err));
 
-        navigate('/result');
+            navigate('/result', {state:{name: residentName}});
     }
 
     const setTag = (tag) => {

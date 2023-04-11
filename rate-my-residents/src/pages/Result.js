@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import styled from 'styled-components';
 import DisplayOverall from '../components/DisplayOverall';
 import { useState } from 'react';
+import axios from 'axios';
 
 function Result(props){
     const [name, setName] = useState(null);
@@ -18,19 +19,14 @@ function Result(props){
 
     useEffect(()=>{
         const fetchData = async () => {
-            const res = await fetch('/api/info', {
-                method: 'POST',
-                mode: 'cors',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({"name": name})
-            });
-            
-            const result = await res.json();
-            result.forEach(r => {
-                console.log(r);
-            });
-
-            setRates(result);
+            try {
+                const res = await axios.post('/api/info', {name: name}, {
+                    headers: {'Content-Type': 'application/json'}
+                });
+                setRates(res.data);
+            } catch (error){
+                console.log(error);
+            }
         };
         fetchData();
     }, [name]);
