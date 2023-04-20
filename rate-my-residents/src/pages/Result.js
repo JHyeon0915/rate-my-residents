@@ -48,25 +48,27 @@ function Result(props){
 
     const assignData = (title) => {
         let sum = 0;
+
         if(title === "overall"){
             rates.forEach(r => {
-                sum = r.quality_rate;
+                sum += r.quality_rate;
             });
         }
         else if (title === "diff"){
             rates.forEach(r => {
-                    sum = r.difficalty_rate;
+                    sum += r.difficulty_rate;
             });
         }
         else{
             rates.forEach(r => {
-                sum = r.willing === "yes" ? sum + 1 : sum;
+                sum += r.willingness === "yes" ? 1 : 0;
             });
+            sum *= 100;
         }
         return sum/rates.length;
     };
 
-    const overall_rate = rates.length === 0 ? 5 : assignData("overall");
+    const overall_rate = rates.length === 0 ? "-" : assignData("overall");
     const diff_rate = rates.length === 0 ? "-" : assignData("diff");
     const willingness = rates.length === 0 ? "-" : assignData("willing");
 
