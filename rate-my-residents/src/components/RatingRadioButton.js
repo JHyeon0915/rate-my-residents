@@ -40,7 +40,11 @@ function RatingRadioButton(props){
 }
 
 const Wrapper =styled.div`
-  margin: 40px 0 0 45%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 90%;
 `;
 
 const Item = styled.div`
@@ -64,12 +68,12 @@ const RadioButtonLabel = styled.label`
 `;
 
 const RadioButton = styled.input`
-  opacity: 0;
-  z-index: 1;
-  border-radius: 50%;
   width: 24px;
   height: 24px;
-  margin-right: 10px;
+  margin-right: 1rem;
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 1;
   &:hover ~ ${RadioButtonLabel} {
     background: #bebebe;
     &::after {
