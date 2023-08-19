@@ -26,11 +26,10 @@ function Rating(){
             .then(response => console.log(response.data))
             .catch(err => console.log(err));
 
-            navigate('/result', {state:{name: residentName}});
+        navigate('/result', {state:{name: residentName}});
     }
 
-    const setTag = (tag) => {
-        console.log(tag);
+    const addTag = (tag) => {
         setTags([...tags, tag]);     // same as users.concat(user)
     }
 
@@ -49,7 +48,7 @@ function Rating(){
                 <FormCard title="Rate your resident" type="slider" setRate={setQuality}/>
                 <FormCard title="How difficult was to be friends with this person?" type="slider" setRate={setDiff}/>
                 <FormCard title="Would you be freinds again in the next life?" type="radio" setRate={setWilling}/>
-                <TagContainer setTag={setTag} removeTag={removeTag}/>
+                <TagContainer tags={tags} setTags={setTags} addTag={addTag} removeTag={removeTag}/>
                 <CommentSection setComment={setComment}/>
                 <div id="submittion">
                     <SubmitBtn type="submit" onClick={onSubmit}>
@@ -64,12 +63,14 @@ function Rating(){
 }
 
 const DisplayName = styled.div`
-    font-size: 4vw;
+    display: flex;
+    align-items: center;
     height: 6rem;
+    padding-left: 2rem;
     border: 0;
     text-align: left;
     box-shadow: 0px 5px 10px #D7D7D7;
-    margin-bottom: 40px
+    font-size: 2.5rem;
 `;
 
 const FormContainer= styled.div`
@@ -88,7 +89,7 @@ const SubmitBtn = styled.button`
     background-color: #989898;
     border:none;
     border-radius: 30px;
-    pointer: cursor;
+    cursor: pointer;
     color: white;
     font-weight: bold;
 `;
