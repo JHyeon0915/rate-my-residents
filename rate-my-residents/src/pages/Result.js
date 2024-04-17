@@ -8,7 +8,7 @@ import DisplayOverall from '../components/DisplayOverall';
 import { useState } from 'react';
 import axios from 'axios';
 
-function Result(props){
+function Result(){
     const [name, setName] = useState(null);
     const [rates, setRates] =useState([]);
     const location = useLocation();
@@ -73,7 +73,7 @@ function Result(props){
     const willingness = rates.length === 0 ? "-" : assignData("willing");
 
     return(
-        <> 
+        <div> 
             <Header />
             <BigWrapper>
                 <MainWrapper>
@@ -104,7 +104,7 @@ function Result(props){
                     {rating_tabs}
                 </ul>
             </BigWrapper>
-        </>
+        </div>
     );
 }
 
@@ -128,7 +128,7 @@ const RateButton = styled.button`
 `;
 
 const MainWrapper = styled.div`
-    padding: 80px 3% 20px 3%;
+    padding: 80px 0 20px;
     border-bottom: 2px solid black;
     text-align: left;
 `;
@@ -148,9 +148,10 @@ const FeedbackNum = styled.div`
     font-size: 32px;
 `;
 
-const BigWrapper = styled.div`
-    width: auto;
-    max-width: 1000px;
+const BigWrapper = styled.main`
+    width: 90%;
+    max-width: 850px;
+    margin-left: 10%;
 `;
 
 const ResidentName = styled.p`
