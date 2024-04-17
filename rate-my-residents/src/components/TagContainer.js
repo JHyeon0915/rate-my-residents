@@ -3,27 +3,41 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 function TagContainer (props)  {
+    const LIMIT = 3;
     const tagOptions = [
       "Pretty", "Handsome", "Cute", 
       "Considerate", "Mature", "Imature", 
       "Hard texter", "Talkative", "Bitch", 
       "Oblivious", "Caring", "Sweet", "Son of a Bitch",
     ];
-    const [isCheckedList, setIsCheckedList] = useState(Array(tagOptions.length).fill(false));
-    const [cursor, setCursor] = useState("pointer");
-    const tagObject = {};
     
+    const [disabled, setDisabled] = useState(false);
+    
+    useEffect(()=>{
+        const tagObject = {};
+
+        if (props.tags.length === LIMIT){
+            setDisabled(true);
+        } else {
+            setDisabled(false);
+        }
+        
+        for(var i=0;i<tagOptions.length;i++){
+            tagObject[tagOptions[i]] = props.tags.includes(tagOptions[i]);
+        }
+
+    }, [tagOptions, props.tags.length]);
+
     return(
         <Wrapper>
             <div><b>Select up to 3 tags</b></div>
             {
-                tagOptions.map((tag, index) =>
+                tagOptions.map((tag) =>
                     <TagElement
-                        label={tag} 
-                        setCursor={setCursor} 
-                        cursor={cursor}
+                        label={tag}
                         addTag={props.addTag}
                         removeTag={props.removeTag}
+                        disabled={disabled}
                     />
                 )
             }

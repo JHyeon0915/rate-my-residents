@@ -2,27 +2,26 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 function TagElement (props) {
-    const [tagColor,setTagColor] = useState("#EFEFEF");
-    const [disabled, setDisabled] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
+
+    useEffect(() => {
+      if(isChecked && !props.disabled){
+        props.addTag(props.label);
+        console.log('labe added!');
+      } else if (!isChecked) {
+        props.removeTag(props.label);
+        console.log('label removed!');  // Too many action calls in the initial rerender of the page
+      }
+    }, [isChecked]);
 
     const onClick = (event) => {
-        const isChecked = event.target.checked;
-
-        if(isChecked){
-            props.addTag(props.label);
-            console.log('labe added!');
-            setTagColor("#D9E7FF");
-        } else {
-            props.removeTag(props.label);
-            console.log('label removed!');
-            setTagColor("#EFEFEF");
-        }
+      setIsChecked(event.target.checked);
     };
 
     return(
-        <TagLabel htmlFor={props.label} bgColor={tagColor}>
+        <TagLabel htmlFor={props.label} isChecked={isChecked} disabled={props.disabled}>
             {props.label}
-            <TagInput id={props.label} type="checkbox" onClick={onClick} disabled={disabled} hidden></TagInput>
+            <input id={props.label} type="checkbox" onClick={onClick} disabled={isChecked ? false : props.disabled} hidden></input>
         </TagLabel>
     );
 }     
@@ -30,19 +29,16 @@ function TagElement (props) {
 export default TagElement;
 
 const TagLabel = styled.label`
-  background-color: ${props => props.bgColor || '#EFEFEF'};
+  background-color: ${props => props.isChecked ? '#D9E7FF' : '#EFEFEF'};
   margin: 10px 10px 0 10px;
   padding: 10px 20px;
   display: inline-box;
   border-radius: 17px;
-  cursor: pointer;
+  cursor: ${props => props.disabled && !props.isChecked ? 'default' : 'pointer'};
 
-&:hover {
-  background-color: #D9E7FF;
+${props => !props.disabled
+  ?? `&:hover {
+    background-color: #D9E7FF;
+  }`
 }
-`;
-
-const TagInput = styled.input`
-  width: 100%;
-  height:100%;
 `;

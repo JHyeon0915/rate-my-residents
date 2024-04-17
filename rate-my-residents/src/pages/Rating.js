@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import FormCard from '../components/FormCard';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -30,11 +30,11 @@ function Rating(){
     }
 
     const addTag = (tag) => {
-        setTags([...tags, tag]);     // same as users.concat(user)
+        setTags([...tags, tag]);
     }
 
     const removeTag = (targetTag) => {
-        setTags(tags.filter(tag => tag === targetTag))
+        setTags(tags.filter(tag => tag !== targetTag))
     }
 
     return(
@@ -56,8 +56,7 @@ function Rating(){
                     </SubmitBtn>
                 </div>
             </form>
-        </FormContainer>    
-        
+        </FormContainer>
     </>
     );
 }
