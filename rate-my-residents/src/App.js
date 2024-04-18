@@ -24,10 +24,6 @@ function App() {
             <Route path="/result/rating" element={<Rating />} />
         </Routes>
       </BrowserRouter>
-      <form action="../../post" method="post" 
-              className="form">
-          <button type="submit">Connected?</button>
-      </form>
     </>
   );
 }

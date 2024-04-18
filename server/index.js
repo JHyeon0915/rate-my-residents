@@ -52,11 +52,6 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
-app.post("/post", (req,res)=>{
-  console.log("Connected to React");
-  res.redirect("/");
-});
-
 // 쿼리 콜백 문제일듯..
 app.post('/api/rate', (req,res) => {
   const {residentName, quality, diff, willing, comment, tags} = req.body;
