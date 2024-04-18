@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Header from '../components/Header';
 import styled from 'styled-components';
-import DisplayOverall from '../components/DisplayOverall';
 import { useState } from 'react';
 import axios from 'axios';
 
