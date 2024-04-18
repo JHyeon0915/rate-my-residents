@@ -1,5 +1,3 @@
-// li로 구현
-// rating value - two CardNumRating/ rating info - comments(div)
 import CardNumRating from './CardNumRating';
 import styled from 'styled-components';
 
@@ -23,40 +21,70 @@ function ResidentRatingTabs(props) {
             <CardNumRating title="QUALITY" rate={props.quality_rate}></CardNumRating>
             <CardNumRating title="DIFFICULTY" rate={props.difficulty_rate}></CardNumRating>
         </CardNumContainer>
-        <GeneralRateInfoContainer>
-            <div><b>COMMENT</b></div>
-            <p>{props.comment}</p>
-            {tagElements}
-        </GeneralRateInfoContainer>
+        <RateInfoContainer>
+            <RatingHeader><b>COMMENT</b></RatingHeader>
+            <Comment>{props.comment}</Comment>
+            <TagBox>
+                {tagElements}
+            </TagBox>
+        </RateInfoContainer>
     </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
-    max-width: 882px;
+    display: flex;
     background: #F9F9F9;
-    margin: 15px 0;
-    padding: 0;
+    margin: 16px 0;
+    padding: 21px 24px 0;
 `;
 
-const Tag = styled.div`
-    display: inline-block;
+const TagBox = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+`;
+
+const Tag = styled.span`
     background-color: #F1F1F1;
-    margin: 10px 10px 0 5px;
-    padding: 10px 15px;
+    border-radius: 14.5px;
+    font-stretch: condensed;
+    margin: 0px 16px 8px 0px;
+    padding: 8px 16px;
     border-radius: 25px;
-    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: HelveticaNeue, arial;
+    font-weight: 700;
 `;
 
 const CardNumContainer = styled.div`
-    display: inline-block;
-    margin: 25px;
+    display: flex;
+    flex-direction: column;
 `;
 
-const GeneralRateInfoContainer = styled.div`
-    display: inline-block;
-    margin: 25px;
+const RateInfoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-left: 48px;
+    text-align: left;
+    width: 100%;
 `;
 
+const RatingHeader = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0px 10px;
+    min-height: 31px;
+`;
+
+const Comment = styled.div`
+    flex: 1 1 0%;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    margin-bottom: 30px;
+`;
 
 export default ResidentRatingTabs;

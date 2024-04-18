@@ -41,7 +41,7 @@ function Result(){
     
     if(rating_tabs.length === 0){
         rating_tabs.push(
-            <div style={{"font-size": "20px", margin: "20px"}}>NO RESULT</div>  
+            <div style={{fontSize: "20px", margin: "20px"}}>NO RESULT</div>  
         );
     }
 
@@ -77,17 +77,17 @@ function Result(){
             <BigWrapper>
                 <MainWrapper>
                     <OverallRate>{overall_rate}</OverallRate>
-                    <div style={{color:"grey", display: "inline-block", "font-weight": "bold"}}>/5</div>
+                    <div style={{color: "grey", display: "inline-block", fontWeight: "bold"}}>/5</div>
 
-                    <p style={{"text-align":"left", padding: "10px 0"}}>Overall Quality Bases on {rates.length} ratings</p>
+                    <p style={{textAlign: "left", padding: "10px 0"}}>Overall Quality Bases on {rates.length} ratings</p>
                     <ResidentName>{name}</ResidentName>
                     Resident in International House in San Jose State University.
                     <Feedback>
-                        <FeedbackItem style={{"border-right":"1px solid black", "padding-right":10}}>
+                        <FeedbackItem style={{borderRight: "1px solid black", paddingRight: 10}}>
                             <FeedbackNum>{willingness}%</FeedbackNum>
                             <SmallText>Would be friends again</SmallText>
                         </FeedbackItem>
-                        <FeedbackItem style={{"margin-left": 10}}>
+                        <FeedbackItem style={{marginLeft: 10}}>
                             <FeedbackNum>{diff_rate}</FeedbackNum>
                             <SmallText>Level of Difficulty</SmallText>
                         </FeedbackItem>
