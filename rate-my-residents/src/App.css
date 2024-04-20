@@ -2,8 +2,6 @@
   margin: 0;
   padding: 0;
   text-align: center;
-  font-size: 14px;
-  font-family: HelveticaNeue, arial;
 }
 
 ul {
@@ -15,6 +13,12 @@ body::-webkit-scrollbar { display:none; }
 body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+div, a, button {
+  color: rgb(21, 21, 21);
+  font-family: HelveticaNeue, arial;
+  font-size: 14px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
